@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="" method="get" novalidate>
+        {{ form }}
+        <input type="submit" value="search">
+    </form><br>
+    <div class="d-flex align-self-baseline">
+    <div class="card col-md-10">
+        {% for post in posts %}
+            <a href="{{ post.get_absolute_url }}" class="card-body"> {{ post.body|truncatewords:8 }}</a>
+        {% endfor %}
+    </div>
+    <div class="col-md-2">
+        <ul class="list-group">
+        {% for user in users %}
+            {% if user.id == request.user.id %}
+                <a href="{% url 'account:user_profile' user.id %}" class="list-group-item active" aria-current="true">{{ user.username }} ⭐</li>
+            {% else %}
+                <a href="{% url 'account:user_profile' user.id %}" class="list-group-item" aria-current="true">{{ user.username }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div></div>
+{% endblock %}

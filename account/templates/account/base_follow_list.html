@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="d-flex justify-content-center">
+    <ul class="list-group col-md-4">
+    {% for user in users %}
+    <li class="list-group-item bg-primary bg-dark text-white text-center">{% block user_list %}{% endblock %}</li>
+    <hr>   
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}
